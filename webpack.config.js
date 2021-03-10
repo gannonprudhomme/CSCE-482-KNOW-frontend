@@ -12,6 +12,11 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.css'],
   },
 
+  output: {
+      filename: 'main.js',
+      path: __dirname + '/static',
+  },
+
   module: {
     rules: [
       {
