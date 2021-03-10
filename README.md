@@ -28,7 +28,7 @@ recommended to setup auto-linting with ESLint.
 We are currently using [Typescript](https://stackoverflow.com/questions/12694530/what-is-typescript-and-why-would-i-use-it-in-place-of-javascript/35048303#35048303) and [React](https://reactjs.org/). To do these, we have 3 configuration files, one for webpack, `webpack.config.js`, one for Typescript, `tsconfig.json`, and one for our package manager npm, `package.json`(and it's generated file `package-lock.json`)
 
 * `package.json`
-  * This contains 2 major things:
+  * This contains 3 major things:
       1) `dependencies`: Contains all of the packages we'll need to actually run the project on the browser.
       2) `devDependencies`: Dependencies that help us develop the project, such as linting and testing
       3) `scripts`: These all us to run `npm run dev` to quickly run webpack/compile our Typescript.
