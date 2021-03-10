@@ -1,0 +1,46 @@
+name: Frontend CI
+on: push
+
+jobs:
+  test-frontend:
+    name: 'Testing'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Get node.js
+        uses: actions/setup-node@v1
+
+      - name: npm install
+        run: npm install
+
+      - name: test
+        run: npm test
+
+  build-frontend:
+    name: 'Building'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Get node.js
+        uses: actions/setup-node@v1
+
+      - name: npm install
+        run: npm install
+
+      # Builds for production
+      - name: build
+        run: npm run build
+
+  lint-frontend:
+    name: 'Linting'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Get node.js
+        uses: actions/setup-node@v1
+
+      - name: npm install
+        run: npm install
+
+      - name: lint
+        run: npm run lint
