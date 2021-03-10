@@ -63,5 +63,22 @@ module.exports = {
     "@typescript-eslint/semi": ["error"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "linebreak-style": "off",
+    
+    // Fixes this: https://stackoverflow.com/a/64024916
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+
+    // Fixes this: https://stackoverflow.com/a/59268871
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+      }
+    ]
   },
 };

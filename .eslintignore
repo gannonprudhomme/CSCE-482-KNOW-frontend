@@ -1,0 +1,4 @@
+**/*.css.d.ts
+webpack.config.js
+static/
+.eslintrc.js

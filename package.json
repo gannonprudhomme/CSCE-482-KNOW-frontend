@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "webpack --mode development --watch ./index.tsx",
     "build": "webpack --mode production ./index.tsx",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
