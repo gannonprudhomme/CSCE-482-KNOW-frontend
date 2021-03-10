@@ -1,21 +1,16 @@
 {
   "name": "know-frontend",
   "version": "1.0.0",
-  "description": "1. Download node.js",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --mode development --watch ./index.tsx --output ./static/main.js",
+    "build": "webpack --mode production ./index.tsx --output ./static/main.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gannonprudhomme/CSCE-482-KNOW-frontend.git"
   },
-  "author": "",
+  "author": "Team KNOW",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gannonprudhomme/CSCE-482-KNOW-frontend/issues"
-  },
-  "homepage": "https://github.com/gannonprudhomme/CSCE-482-KNOW-frontend#readme",
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
@@ -29,6 +24,8 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "typescript": "^4.2.3",
-    "typescript-eslint": "0.0.1-alpha.0"
+    "typescript-eslint": "0.0.1-alpha.0",
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0"
   }
 }
