@@ -15,6 +15,13 @@ module.exports = {
   output: {
       filename: 'main.js',
       path: __dirname + '/static',
+      // NOTE: Change this if you want to change the function
+      library: 'render',
+      libraryTarget: 'umd',
+      // This makes referencing the library name perform the default export of index.tsx,
+      // which is renderKnowledgePanel
+      libraryExport: 'default',
+      umdNamedDefine: true,
   },
 
   module: {

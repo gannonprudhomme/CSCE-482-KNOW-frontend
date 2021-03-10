@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import Sample from './components/Sample/Sample';
 
 // Export some function for the client to use
-function doStuff(divID: string, url: string): void {
+function renderKnowledgePanel(divID: string, url: string): void {
   ReactDOM.render(
     <div>
       <Sample input={5} />
@@ -13,4 +13,4 @@ function doStuff(divID: string, url: string): void {
   );
 }
 
-export default doStuff;
+export default renderKnowledgePanel;
