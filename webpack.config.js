@@ -43,10 +43,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              localsConvention: 'camelCase',
               modules: {
                 mode: 'local',
                 localIdentName: '[local]--[hash:base64:5]',
+                exportLocalsConvention: 'camelCase',
               },
             },
           },

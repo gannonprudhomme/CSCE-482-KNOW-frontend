@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import Sample from '../../components/Sample';
+import Sample from '../../components/Sample/Sample';
 
 describe('Sample', () => {
   test('renders without error', () => {
