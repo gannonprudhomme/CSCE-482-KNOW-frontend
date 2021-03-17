@@ -15,6 +15,8 @@ Run `npm run dev` to run webpack and compile our Typescript(`.tsx`) files into j
 
 * These `.tsx` files are compiled into `static/main.js`.
 
+To see it working, open `test.html` in the browser.
+
 ## Environment setup
 
 VSCode is recommended, and all of these instructions are under the assumption you're using it.
