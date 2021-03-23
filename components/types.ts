@@ -2,7 +2,6 @@ export interface KnowledgePanelData {
   title: string;
   subtitle: string;
   description: string;
-  // The key will be bolded, and the value will be normal text
   entries: Map<string, Entry>;
 }
 
