@@ -45,17 +45,7 @@ module.exports = {
         use: [
           'style-loader',
           {
-            loader: '@teamsupercell/typings-for-css-modules-loader',
-          },
-          {
             loader: 'css-loader',
-            options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[local]--[hash:base64:5]',
-                exportLocalsConvention: 'camelCase',
-              },
-            },
           },
         ],
       },

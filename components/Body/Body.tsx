@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Entry } from '../../types';
+import { Entry } from '../types';
 
 interface BodyProps {
   description?: string;
