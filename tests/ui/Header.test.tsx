@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import Header from '../../components/KnowledgePanel/Header/Header';
+import Header from '../../components/Header/Header';
 
 describe('Body', () => {
   test('Displays the title & subtitle', () => {

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import Body from '../../components/KnowledgePanel/Body/Body';
+import Body from '../../components/Body/Body';
 import { Entry } from '../../components/types';
 
 describe('Body', () => {

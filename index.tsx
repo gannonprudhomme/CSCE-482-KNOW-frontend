@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import KnowledgePanel from './components/KnowledgePanel/KnowledgePanel';
+import KnowledgePanel from './components/KnowledgePanel';
 import { KnowledgePanelData } from './components/types';
 
 // Temporary, will be replaced when we actually make a request to the backend

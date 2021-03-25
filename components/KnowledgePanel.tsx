@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { KnowledgePanelData } from '../types';
+import { KnowledgePanelData } from './types';
 import Body from './Body/Body';
 import Header from './Header/Header';
 
