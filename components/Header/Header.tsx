@@ -10,12 +10,13 @@ interface HeaderProps {
  * Displays the title and subtitle
  */
 const Header: React.FC<HeaderProps> = ({ title, subtitle }) => (
-  <div>
+  <div className="knowledge-panel-title">
     <span>
       {title}
     </span>
+    <br></br>
     <span>
-      {subtitle}
+      <div className="knowledge-panel-subtitle">{subtitle}</div>
     </span>
   </div>
 );

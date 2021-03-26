@@ -5,3 +5,12 @@
     width: -moz-fit-content;
     padding: 8px;
 }
+
+.knowledge-panel-subtitle{
+    font-size: 20px;
+}
+
+.knowledge-panel-title {
+    font: sans-serif;
+    font-size: 40px;
+}
