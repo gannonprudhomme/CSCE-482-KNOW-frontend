@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }) => (
     <span>
       {title}
     </span>
-    <br></br>
+    {"\n"}
     <span>
       <div className="knowledge-panel-subtitle">{subtitle}</div>
     </span>
