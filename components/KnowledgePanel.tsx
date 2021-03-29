@@ -16,7 +16,7 @@ const KnowledgePanel: React.FC<KnowledgePanelProps> = ({ data }) => {
   return (
     <div className="knowledge-panel-base">
       <Header title={title} subtitle={subtitle} />
-      Separation here
+      <div className="horizontal-separator" />
       <Body description={description} entries={entries} />
     </div>
   );
