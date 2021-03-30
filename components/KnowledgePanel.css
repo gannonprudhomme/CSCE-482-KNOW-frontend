@@ -5,15 +5,3 @@
     width: -moz-fit-content;
     padding: 8px;
 }
-
-.header-subtitle{
-    font-size: 20px;
-    margin-top: 8px;
-}
-
-.header-title {
-    font: sans-serif;
-    font-size: 40px;
-    display: block;
-    margin-bottom: 4px;
-}
