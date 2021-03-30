@@ -1,7 +1,9 @@
 .knowledge-panel-base {
     border: 1px solid lightgray;
-    width: fit-content;
-    /* Firefox handles fit-content different, so we have to use a vendoer tag */
-    width: -moz-fit-content;
-    padding: 8px;
+    max-width: 450px;
+}
+
+.horizontal-separator {
+    border-bottom: 1px solid lightgray;
+    width: 100%;
 }

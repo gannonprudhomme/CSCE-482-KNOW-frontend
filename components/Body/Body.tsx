@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Entry } from '../types';
+import './Body.css';
 
 interface BodyProps {
   description?: string;
@@ -17,10 +18,11 @@ const Body: React.FC<BodyProps> = ({ description, entries }) => {
   entries.forEach((value) => {
     const jsx = (
       <div key={value.keyText}>
-        <span>
+        <span className="key-text">
           {value.keyText}
           :
         </span>
+        &nbsp;
         <span>
           {value.value}
         </span>
@@ -29,10 +31,18 @@ const Body: React.FC<BodyProps> = ({ description, entries }) => {
     entriesJSX.push(jsx);
   });
 
-  return (
-    <div>
+  const descriptionJSX = (
+    <div className="description">
       {description}
-      {entriesJSX}
+    </div>
+  );
+
+  return (
+    <div className="body">
+      {description ? descriptionJSX : null}
+      <div className="entries">
+        {entriesJSX}
+      </div>
     </div>
   );
 };
