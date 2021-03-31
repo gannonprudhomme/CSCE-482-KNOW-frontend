@@ -23,7 +23,7 @@ const Body: React.FC<BodyProps> = ({ description, entries }) => {
           :
         </span>
         &nbsp;
-        <span>
+        <span className="value-text">
           {value.value}
         </span>
       </div>
