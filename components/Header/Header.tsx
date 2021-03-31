@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Header.css';
 
 interface HeaderProps {
   title: string;
@@ -11,10 +12,10 @@ interface HeaderProps {
  */
 const Header: React.FC<HeaderProps> = ({ title, subtitle }) => (
   <div>
-    <span>
+    <span className="header-title">
       {title}
     </span>
-    <span>
+    <span className="header-subtitle">
       {subtitle}
     </span>
   </div>
