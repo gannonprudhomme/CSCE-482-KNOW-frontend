@@ -3,16 +3,136 @@
     <head>
         <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
         <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+        <script src="./static/main.js"></script>
+        <style>
+            #first-row, #second-row { /* apply styles to both first and second row */
+                display: flex;
+                align-items: flex-end; /* vertically align to the bottom of the container */
+            }
+
+            #second-row { /* Separate second row from first row */
+                margin-top: 24px;
+            }
+
+            .demo {
+               margin-right: 16px; /* Adds spacing between all of the demos */
+            }
+
+            h2 {
+                margin: 0;
+            }
+
+            #interactive-input {
+                margin-bottom: 4px;
+                width: 80%;
+            }
+        </style>
     </head>
 
     <body>
-        <div id="root"></div>
+        <div id="container">
+            <div id="first-row">
+                <div id="basic-demo" class="demo">
+                    <h2> Basic demo </h2>
 
-        <!-- Note that main.js MUST come after the div we are attempting to insert into -->
-        <script src="./static/main.js"></script>
-        <script>
-            // NOTE: The name of this is determined in webpack.config.js, under output.libraryName
-            render("root", "https://google.com/", "localhost:8000/");
-        </script>
+                    <div id="basic"></div>
+
+                    <!-- Note that main.js MUST come after the div we are attempting to insert into -->
+                    <script>
+                        // NOTE: The name of this is determined in webpack.config.js, under output.libraryName
+                        render("basic", "basic", "localhost:8000/");
+                    </script>
+                </div>
+
+                <div id="interative-demo" class="demo">
+                    <h2> Interactive Demo </h2>
+
+                    <form onsubmit="return doRender(event)">
+                        <input type="text" id="interactive-input" value="https://www.wikidata.org/wiki/Q41513"></input>
+                        <input type="submit"></input>
+                    </form>
+
+                    <div id="interactive"></div> <!-- The div to insert into -->
+
+                    <script>
+                        function doRender(event) {
+                            if (event) { // Only passed from the form, so need to check it exists first
+                                event.preventDefault();
+                            }
+
+                            // Get the value from the text input
+                            const value = document.getElementById("interactive-input").value
+                            render("interactive", value, "localhost:8000/");
+                        }
+
+                        doRender(null);
+                    </script>
+                </div>
+
+                <div id="no-description-demo" class="demo">
+                    <h2> No description demo </h2>
+
+                    <div id="no-description"></div>
+
+                    <script>
+                        // NOTE: The name of this is determined in webpack.config.js, under output.libraryName
+                        render("no-description", "no-description", "localhost:8000/");
+                    </script>
+                </div>
+            </div>
+
+            <div id="second-row">
+                <div id="short-description-demo" class="demo">
+                    <h2> Short description demo </h2>
+
+                    <div id="short-description"></div>
+
+                    <script>
+                        // NOTE: The name of this is determined in webpack.config.js, under output.libraryName
+                        render("short-description", "short-description", "localhost:8000/");
+                    </script>
+                </div>
+                <div id="long-title-subtitle-demo" class="demo">
+                    <h2> Long title & subtitle demo </h2>
+
+                    <div id="long-title-subtitle"></div>
+
+                    <script>
+                        // NOTE: The name of this is determined in webpack.config.js, under output.libraryName
+                        render("long-title-subtitle", "long-title-subtitle", "localhost:8000/");
+                    </script>
+                </div>
+                <div id="custom-styles-demo" class="demo">
+                    <style>
+                        /* The * is important here; because header-title is a child, but not an
+                            immedaite child, we must add it so that it will go down the tree
+                            and correctly select it
+                            Note that X > Y is a CSS selector selects all Y elements that are
+                            (immediate) children of X
+                        */
+                        #custom-styles > * .header-title {
+                            color: red;
+                        }
+
+                        #custom-styles > * .description {
+                            color: blue;
+                        } 
+
+                        #custom-styles > * .value-text {
+                            text-decoration: underline;
+                        }
+                    </style>
+
+                    <h2> Custom styles demo </h2>
+
+                    <div id="custom-styles"></div>
+
+                    <script>
+                        // NOTE: The name of this is determined in webpack.config.js, under output.libraryName
+                        render("custom-styles", "custom-styles", "localhost:8000/");
+                    </script>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
