@@ -1,11 +1,11 @@
 .description {
-    margin: 13px 0 13px;
+    margin: 13px 0 ;
     padding: 0 8px;
 }
 
 .entries {
     /* Add padding to sides and bottom, description will handle margin between these */
-    padding: 0 8px 8px;
+    padding: 8px 8px 8px;
 }
 
 .key-text {
