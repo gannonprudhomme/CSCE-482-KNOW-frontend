@@ -3,11 +3,13 @@
     display: inline-block;
     font-size: 20px;
     margin-top: 2px;
+    
+    color: gray;
 }
 
 .header-title {
     margin-left: 8px;
     font-size: 40px;
     display: block;
-    margin-bottom: 2px;
+    
 }
