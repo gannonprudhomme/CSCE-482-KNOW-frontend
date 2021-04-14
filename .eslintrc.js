@@ -79,6 +79,7 @@ module.exports = {
         "ts": "never",
         "tsx": "never",
       }
-    ]
+    ],
+    "import/no-cycle": "off",
   },
 };

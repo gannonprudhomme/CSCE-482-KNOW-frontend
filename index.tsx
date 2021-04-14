@@ -13,12 +13,12 @@ const dummyData: KnowledgePanelData = {
     sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
     est laborum.
   `,
-  entries: new Map(Object.entries({
-    birthDate: {
-      keyText: 'Birth Date',
+  entries: [
+    {
+      key: 'Birth Date',
       value: 'date goes here',
     },
-  })),
+  ],
 };
 
 const basicData = {
@@ -28,24 +28,24 @@ const basicData = {
   description: `William Blake was an English poet, painter, and printmaker. Largely unrecognised
     during his lifetime, Blake is now considered a seminal figure in the history of the poetry
     and visual arts of the Romantic Age.`,
-  entries: new Map(Object.entries({
-    birthDate: {
-      keyText: 'Born',
+  entries: [
+    {
+      key: 'Born',
       value: 'November 28, 1757, Soho, London, United Kingdom',
     },
-    died: {
-      keyText: 'Died',
+    {
+      key: 'Died',
       value: 'August 12, 1827, London, United Kingdom',
     },
-    spouses: {
-      keyText: 'Spouse',
+    {
+      key: 'Spouse',
       value: 'Catherine Blake (m. 1782 - 1827)',
     },
-    children: {
-      keyText: 'Children',
+    {
+      key: 'Children',
       value: 'Thomas Blake (Son)',
     },
-  })),
+  ],
 };
 
 const noDescData = {
@@ -64,28 +64,43 @@ const longTitleSubtitleData = {
   subtitle: 'This is also a really long subtitle that spans multiple lines - even more text',
 };
 
+const dynamicLinkData = {
+  ...dummyData,
+  title: 'George Washington',
+  description: '',
+  entries: [
+    {
+      key: 'Spouse',
+      value: 'Martha Washington',
+      link: 'insert-here',
+    },
+  ],
+};
+
 // Temporary, will be replaced when we actually make a request to the backend
 function dummyBackendRequest(uri: string, backendURL: string): Promise<KnowledgePanelData> {
   return new Promise((resolve) => {
     const interactiveDemo = {
       ...dummyData,
       subtitle: `The uri is: ${uri}`,
-      entries: new Map(Object.entries({
-        backendURL: {
-          keyText: 'Backend URL',
+      entries: [
+        {
+          key: 'Backend URL',
           value: backendURL,
         },
-      })),
+      ],
     };
 
     if (uri === 'basic' || uri === 'custom-styles') {
       resolve(basicData);
     } else if (uri === 'no-description') {
       resolve(noDescData);
-    } else if (uri === 'short-description') {
+    } else if (uri === 'short-description' || uri === 'insert-here') {
       resolve(shortDescData);
     } else if (uri === 'long-title-subtitle') {
       resolve(longTitleSubtitleData);
+    } else if (uri === 'dynamic-link') {
+      resolve(dynamicLinkData);
     } else { // b/c interactive demo can have any URI, make it the base case
       resolve(interactiveDemo);
     }
@@ -104,6 +119,7 @@ function renderKnowledgePanel(divID: string, uri: string, backendURL: string): v
       <div>
         <KnowledgePanel
           data={data}
+          backendURL={backendURL}
         />
       </div>,
       document.getElementById(divID),
