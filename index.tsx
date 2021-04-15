@@ -2,107 +2,33 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import KnowledgePanel from './components/KnowledgePanel';
 import { KnowledgePanelData } from './components/types';
+import { dummyBackendRequest } from './dummyData';
 
-const dummyData: KnowledgePanelData = {
-  title: 'Title',
-  subtitle: 'subtitle',
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
-  `,
-  entries: [
-    {
-      key: 'Birth Date',
-      value: 'date goes here',
-    },
-  ],
-};
+function makeBackendRequest(uri: string, backendURL: string): Promise<KnowledgePanelData> {
+  return new Promise((resolve, reject) => {
+    if (backendURL) {
+      fetch(`${backendURL}/?uri=${uri}`).then(
+        (res) => res.json(),
+      ).then((data: KnowledgePanelData) => {
+        const {
+          title, subtitle, description, entries,
+        } = data;
 
-const basicData = {
-  ...dummyData,
-  title: 'William Blake',
-  subtitle: 'English poet',
-  description: `William Blake was an English poet, painter, and printmaker. Largely unrecognised
-    during his lifetime, Blake is now considered a seminal figure in the history of the poetry
-    and visual arts of the Romantic Age.`,
-  entries: [
-    {
-      key: 'Born',
-      value: 'November 28, 1757, Soho, London, United Kingdom',
-    },
-    {
-      key: 'Died',
-      value: 'August 12, 1827, London, United Kingdom',
-    },
-    {
-      key: 'Spouse',
-      value: 'Catherine Blake (m. 1782 - 1827)',
-    },
-    {
-      key: 'Children',
-      value: 'Thomas Blake (Son)',
-    },
-  ],
-};
+        let entriesMap = null;
+        if (entries) {
+          entriesMap = new Map(Object.entries(entries));
+        }
 
-const noDescData = {
-  ...dummyData,
-  description: '',
-};
+        if (!title && !entries) {
+          reject(Error('Empty response'));
+        }
 
-const shortDescData = {
-  ...dummyData,
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor',
-};
-
-const longTitleSubtitleData = {
-  ...dummyData,
-  title: 'This is a really long title that spans multiple lines',
-  subtitle: 'This is also a really long subtitle that spans multiple lines - even more text',
-};
-
-const dynamicLinkData = {
-  ...dummyData,
-  title: 'George Washington',
-  description: '',
-  entries: [
-    {
-      key: 'Spouse',
-      value: 'Martha Washington',
-      link: 'insert-here',
-    },
-  ],
-};
-
-// Temporary, will be replaced when we actually make a request to the backend
-function dummyBackendRequest(uri: string, backendURL: string): Promise<KnowledgePanelData> {
-  return new Promise((resolve) => {
-    const interactiveDemo = {
-      ...dummyData,
-      subtitle: `The uri is: ${uri}`,
-      entries: [
-        {
-          key: 'Backend URL',
-          value: backendURL,
-        },
-      ],
-    };
-
-    if (uri === 'basic' || uri === 'custom-styles') {
-      resolve(basicData);
-    } else if (uri === 'no-description') {
-      resolve(noDescData);
-    } else if (uri === 'short-description' || uri === 'insert-here') {
-      resolve(shortDescData);
-    } else if (uri === 'long-title-subtitle') {
-      resolve(longTitleSubtitleData);
-    } else if (uri === 'dynamic-link') {
-      resolve(dynamicLinkData);
-    } else { // b/c interactive demo can have any URI, make it the base case
-      resolve(interactiveDemo);
+        resolve({
+          title, subtitle, description, entries: entriesMap,
+        });
+      }).catch((err) => reject(err));
+    } else {
+      dummyBackendRequest(uri, backendURL).then((data) => resolve(data));
     }
   });
 }
@@ -114,16 +40,25 @@ function dummyBackendRequest(uri: string, backendURL: string): Promise<Knowledge
  * @param backendURL The URL of the backend where we will send requests to.
  */
 function renderKnowledgePanel(divID: string, uri: string, backendURL: string): void {
-  dummyBackendRequest(uri, backendURL).then((data) => {
-    ReactDOM.render(
+  const render = (jsx: JSX.Element) => {
+    ReactDOM.render(jsx, document.getElementById(divID));
+  };
+
+  render(<div> Loading... </div>);
+
+  makeBackendRequest(uri, backendURL).then((data) => {
+    render(
       <div>
         <KnowledgePanel
           data={data}
           backendURL={backendURL}
         />
       </div>,
-      document.getElementById(divID),
     );
+  }).catch((err) => {
+  // eslint-disable-next-line no-console
+    console.error(err);
+    render(<div> Unavailable </div>);
   });
 }
 
