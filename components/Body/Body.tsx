@@ -5,7 +5,7 @@ import KnowledgePanelLink from './KnowledgePanelLink/KnowledgePanelLink';
 
 interface BodyProps {
   description?: string;
-  entries: Entry[];
+  entries: Map<string, Entry[]>;
   backendURL: string;
 }
 
@@ -18,21 +18,43 @@ const Body: React.FC<BodyProps> = ({ description, entries, backendURL }) => {
   // Convert each entry into JSX
   const entriesJSX: JSX.Element[] = [];
   if (entries) {
-    entries.forEach((value) => {
+    entries.forEach((values, key) => {
+      const valuesJSX = values.map((entry, index) => {
+        // Displays a space and comma, except if it's the last one in the list
+        const commaOrNot = index < values.length - 1 ? (
+          <>
+            ,
+            &nbsp;
+          </>
+        ) : null;
+        return entry.link ? (
+          <>
+            <KnowledgePanelLink
+              backendURL={backendURL}
+              value={entry.value}
+              uri={entry.link}
+              key={entry.value}
+            />
+            {commaOrNot}
+          </>
+        ) : (
+          <>
+            <span className="value-text" key={entry.value}>
+              {entry.value}
+            </span>
+            {commaOrNot}
+          </>
+        );
+      });
+
       const jsx = (
-        <div key={value.key}>
+        <div key={values[0].value}>
           <span className="key-text">
-            {value.key}
+            {key}
             :
           </span>
           &nbsp;
-          {value.link ? (
-            <KnowledgePanelLink backendURL={backendURL} value={value.value} uri={value.link} />
-          ) : (
-            <span className="value-text">
-              {value.value}
-            </span>
-          )}
+          {valuesJSX}
         </div>
       );
       entriesJSX.push(jsx);

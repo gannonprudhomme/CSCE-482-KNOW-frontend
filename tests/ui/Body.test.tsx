@@ -10,7 +10,7 @@ describe('Body', () => {
 
     // act
     const { getByText } = render(
-      <Body description={desc} entries={[]} backendURL="" />,
+      <Body description={desc} entries={new Map<string, Entry[]>()} backendURL="" />,
     );
 
     // assert
@@ -21,11 +21,13 @@ describe('Body', () => {
   test('Correctly displays entries', () => {
     // arrange
     const data: Entry = {
-      key: 'Birth Date',
       value: 'some-value',
     };
 
-    const entries = [data];
+    const key = 'Birth Date';
+    const entries = new Map(Object.entries({
+      'Birth Date': [data],
+    }));
 
     // act
     const { getByText } = render(
@@ -33,7 +35,7 @@ describe('Body', () => {
     );
 
     // assert
-    const keyText = getByText(`${data.key}:`); // Adds the colon to it
+    const keyText = getByText(`${key}:`); // Adds the colon to it
     expect(keyText).toBeInTheDocument();
     const value = getByText(data.value);
     expect(value).toBeInTheDocument();

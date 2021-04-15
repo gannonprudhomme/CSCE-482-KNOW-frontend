@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
+        <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+        <script src="./static/main.js"></script>
+        <style>
+            #first-row, #second-row { /* apply styles to both first and second row */
+                display: flex;
+                align-items: flex-end; 
+                flex-wrap: wrap;
+                /* display: grid; */
+                /* grid-auto-flow: column; */
+            }
+
+            #second-row { /* Separate second row from first row */
+                margin-top: 24px;
+            }
+
+            .demo {
+               margin-right: 16px; /* Adds spacing between all of the demos */
+               width: fit-content;
+            }
+
+            h2 {
+                margin: 0;
+            }
+
+            form {
+                display: flex;
+            }
+
+            #interactive-input {
+                margin-bottom: 4px;
+                width: 80%;
+                min-width: 250px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="first-row">
+                <div id="interative-demo" class="demo">
+                    <h2> Interactive Demo </h2>
+
+                    <form onsubmit="return doRender(event)">
+                        <input type="text" id="interactive-input" value="https://www.wikidata.org/wiki/Q142"></input>
+                        <input type="submit"></input>
+                    </form>
+
+                    <div id="interactive"></div> <!-- The div to insert into -->
+
+                    <script>
+                        function doRender(event) {
+                            if (event) { // Only passed from the form, so need to check it exists first
+                                event.preventDefault();
+                            }
+
+                            // Get the value from the text input
+                            const value = document.getElementById("interactive-input").value
+                            render("interactive", value, "http://localhost:8000");
+                        }
+
+                        doRender(null);
+                    </script>
+                </div>
+                <div id="insert-here-0" class="demo">will go here</div>
+                <div id="insert-here-1" class="demo"></div>
+                <div id="insert-here-2" class="demo"></div>
+                <div id="insert-here-3" class="demo"></div>
+                <div id="insert-here-4" class="demo"></div>
+                <div id="insert-here-5" class="demo"></div>
+                <div id="insert-here-6" class="demo"></div>
+                <div id="insert-here-7" class="demo"></div>
+                <div id="insert-here-8" class="demo"></div>
+            </div>
+
+            <div id="second-row">
+            </div>
+        </div>
+    </body>
+</html>

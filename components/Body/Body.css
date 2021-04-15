@@ -11,3 +11,7 @@
 .key-text {
     font-weight: bold;
 }
+
+.value-text {
+    font-weight: initial;
+}
