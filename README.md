@@ -1,5 +1,32 @@
 # Team KNOW Frontend
 
+## Including the library in your project
+
+(see demo.html for an example)
+
+1) Include the library
+
+```html
+<script src="./main.js"></script>
+```
+
+2) Include React (which is not bundled with the library, see the bottom of `webpack.config.js` for details)
+
+Note you can change `.production.min` -> `.development` to get better debug output if you're adding to the project.
+
+```html
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js"></script>
+```
+
+3) Execute the library
+
+```html
+<script>
+  render("divIDToInsertInto", "https://wikidata.org/wiki/Q23", "http://backendURL:8000")
+</script>
+```
+
 ## Setup
 
 First, you'll need to install Node.js in order to install npm, which is what we use for managing all of our Javascript packages. Download Node.js and npm [here](https://www.npmjs.com/get-npm).
